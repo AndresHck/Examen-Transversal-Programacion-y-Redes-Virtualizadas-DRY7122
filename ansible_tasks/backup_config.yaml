@@ -1,0 +1,16 @@
+---
+- name: "PLAY 1: RESPALDAR CONFIGURACION DEL ROUTER"
+  hosts: csr_routers
+  gather_facts: false
+
+  tasks:
+    - name: "TAREA 1: EJECUTAR SHOW RUNNING-CONFIG"
+      ios_command:
+        commands:
+          - show running-config
+      register: config_output
+
+    - name: "TAREA 2: GUARDAR SALIDA EN ARCHIVO DE RESPALDO"
+      copy:
+        content: "{{ config_output.stdout[0] }}"
+        dest: "./backups/backup-{{ inventory_hostname }}-{{ lookup('pipe', 'date +%Y-%m-%d') }}.txt"

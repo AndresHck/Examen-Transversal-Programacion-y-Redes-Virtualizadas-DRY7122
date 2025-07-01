@@ -1,0 +1,5 @@
+[csr_routers]
+Rojas-Guinel  ansible_host=192.168.77.129 ansible_user=cisco ansible_password=cisco123! ansible_network_os=ios ansible_connection=network_cli
+
+[webservers]
+localhost ansible_connection=local
